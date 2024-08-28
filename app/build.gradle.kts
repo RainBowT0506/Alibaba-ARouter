@@ -42,7 +42,13 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(project(":module-java-export"))
+    implementation(project(":module-java"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.guava)
+    implementation(libs.arouter.api)
+    implementation(libs.arouter.annotation)
+    implementation(libs.arouter.compiler)
 }

@@ -1,0 +1,50 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.alibaba.android.arouter.demo.module1" >
+5
+6    <uses-sdk android:minSdkVersion="14" />
+7
+8    <!-- 读写存储的权限 -->
+9    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+9-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:7:5-80
+9-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:7:22-77
+10    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+10-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:8:5-81
+10-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:8:22-78
+11
+12    <application>
+12-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:10:5-21:19
+13        <activity android:name="com.alibaba.android.arouter.demo.module1.TestModuleActivity" />
+13-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:11:9-96
+13-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:11:19-93
+14        <activity android:name="com.alibaba.android.arouter.demo.module1.TestModule2Activity" />
+14-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:12:9-97
+14-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:12:19-94
+15        <activity android:name="com.alibaba.android.arouter.demo.module1.TestWebview" />
+15-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:13:9-89
+15-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:13:19-86
+16        <activity
+16-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:14:9-15:45
+17            android:name="com.alibaba.android.arouter.demo.module1.testactivity.Test1Activity"
+17-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:14:19-101
+18            tools:ignore="Instantiatable" />
+18-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:15:13-42
+19        <activity android:name="com.alibaba.android.arouter.demo.module1.testactivity.Test2Activity" />
+19-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:16:9-104
+19-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:16:19-101
+20        <activity android:name="com.alibaba.android.arouter.demo.module1.testactivity.Test3Activity" />
+20-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:17:9-104
+20-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:17:19-101
+21        <activity android:name="com.alibaba.android.arouter.demo.module1.testactivity.Test4Activity" />
+21-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:18:9-104
+21-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:18:19-101
+22        <activity
+22-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:19:9-20:45
+23            android:name="com.alibaba.android.arouter.demo.module1.testactivity.TestDynamicActivity"
+23-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:19:19-107
+24            tools:ignore="Instantiatable" />
+24-->/Users/rainbowt/AndroidStudioProjects/Alibaba-ARouter/module-java/src/main/AndroidManifest.xml:20:13-42
+25    </application>
+26
+27</manifest>

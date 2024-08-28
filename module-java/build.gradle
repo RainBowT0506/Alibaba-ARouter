@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+
+dependencies {
+    implementation project(':module-java-export')
+    implementation(libs.arouter.api)
+    implementation(libs.arouter.annotation)
+    implementation(libs.arouter.compiler)
+    implementation libs.androidx.appcompat
+    implementation libs.fastjson
+}
+
+android {
+    namespace 'com.alibaba.android.arouter.demo.module1'
+    compileSdkVersion 34  // 更新到最新版本
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
+        targetSdkVersion 34  // 更新到最新版本
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8  // 升级到 Java 1.8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lint {
+        abortOnError = false
+    }
+}
