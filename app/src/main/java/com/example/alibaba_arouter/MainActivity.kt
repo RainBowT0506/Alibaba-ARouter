@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         map["testMap"] = objList
 
         when (v.id) {
+            //  基本设置
             R.id.openLog -> ARouter.openLog()
             R.id.openDebug -> ARouter.openDebug()
             R.id.init -> {
@@ -56,6 +57,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 ARouter.init(application)
             }
 
+            R.id.destroy -> ARouter.getInstance().destroy()
+
+            //  基础功能(请先初始化)
             R.id.normalNavigation -> ARouter.getInstance()
                 .build("/test/activity2")
                 .navigation()
@@ -65,6 +69,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 .withString("name", "老王")
                 .withInt("age", 23)
                 .navigation()
+
+            R.id.normalNavigation2 -> ARouter.getInstance()
+                .build("/test/activity2")
+                .navigation(this, 666)
+
+            R.id.getFragment -> {
+                val fragment: Fragment = ARouter.getInstance().build("/test/fragment")
+                    .withString("name", "老王")
+                    .withInt("age", 18)
+                    .withBoolean("boy", true)
+                    .withLong("high", 180)
+                    .withString("url", "https://a.b.c")
+                    .withSerializable("ser", testSerializable)
+                    .withParcelable("pac", testParcelable)
+                    .withObject("obj", testObj)
+                    .withObject("objList", objList)
+                    .withObject("map", map).navigation() as Fragment
+                Toast.makeText(this, "找到Fragment:" + fragment.toString(), Toast.LENGTH_SHORT)
+                    .show()
+            }
 
             R.id.normalNavigationWithParams -> {
                 // ARouter.getInstance()
@@ -99,6 +123,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this, "API < 16,不支持新版本动画", Toast.LENGTH_SHORT).show()
             }
 
+            //  进阶用法(请先初始化)
+            R.id.navByUrl -> ARouter.getInstance()
+                .build("/test/webview")
+                .withString("url", "file:///android_asset/scheme-test.html")
+                .navigation()
+
             R.id.interceptor -> ARouter.getInstance()
                 .build("/test/activity4")
                 .navigation(this, object : NavCallback() {
@@ -109,11 +139,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         Log.d("ARouter", "被拦截了")
                     }
                 })
-
-            R.id.navByUrl -> ARouter.getInstance()
-                .build("/test/webview")
-                .withString("url", "file:///android_asset/scheme-test.html")
-                .navigation()
 
             R.id.autoInject -> ARouter.getInstance().build("/test/activity1")
                 .withString("name", "老王")
@@ -128,17 +153,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 .withObject("map", map)
                 .navigation()
 
+            //  服务管理(请先初始化)
             R.id.navByName -> (ARouter.getInstance().build("/yourservicegroupname/hello")
                 .navigation() as HelloService).sayHello("mike")
 
             R.id.navByType -> ARouter.getInstance().navigation(HelloService::class.java)
                 .sayHello("mike")
 
+            R.id.callSingle -> ARouter.getInstance().navigation(SingleService::class.java)
+                .sayHello("Mike")
+
+            //  多模块测试(请先初始化)
             R.id.navToMoudle1 -> ARouter.getInstance().build("/module/1").navigation()
             R.id.navToMoudle2 ->                 // 这个页面主动指定了Group名
                 ARouter.getInstance().build("/module/2", "m2").navigation()
 
-            R.id.destroy -> ARouter.getInstance().destroy()
+            //  跳转失败测试(请先初始化)
             R.id.failNav -> ARouter.getInstance().build("/xxx/xxx")
                 .navigation(this, object : NavCallback() {
                     override fun onFound(postcard: Postcard) {
@@ -158,31 +188,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 })
 
-            R.id.callSingle -> ARouter.getInstance().navigation(SingleService::class.java)
-                .sayHello("Mike")
-
             R.id.failNav2 -> ARouter.getInstance().build("/xxx/xxx").navigation()
             R.id.failNav3 -> ARouter.getInstance().navigation(MainActivity::class.java)
-            R.id.normalNavigation2 -> ARouter.getInstance()
-                .build("/test/activity2")
-                .navigation(this, 666)
 
-            R.id.getFragment -> {
-                val fragment: Fragment = ARouter.getInstance().build("/test/fragment")
-                    .withString("name", "老王")
-                    .withInt("age", 18)
-                    .withBoolean("boy", true)
-                    .withLong("high", 180)
-                    .withString("url", "https://a.b.c")
-                    .withSerializable("ser", testSerializable)
-                    .withParcelable("pac", testParcelable)
-                    .withObject("obj", testObj)
-                    .withObject("objList", objList)
-                    .withObject("map", map).navigation() as Fragment
-                Toast.makeText(this, "找到Fragment:" + fragment.toString(), Toast.LENGTH_SHORT)
-                    .show()
-            }
-
+            //  动态增加路由测试
             R.id.addGroup -> ARouter.getInstance().addRouteGroup { atlas ->
                 atlas["/dynamic/activity"] = RouteMeta.build(
                     RouteType.ACTIVITY,
@@ -192,18 +201,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 )
             }
 
-            R.id.dynamicNavigation ->                 // 该页面未配置 Route 注解，动态注册到 ARouter
-                ARouter.getInstance().build("/dynamic/activity")
-                    .withString("name", "老王")
-                    .withInt("age", 18)
-                    .withBoolean("boy", true)
-                    .withLong("high", 180)
-                    .withString("url", "https://a.b.c")
-                    .withSerializable("ser", testSerializable)
-                    .withParcelable("pac", testParcelable)
-                    .withObject("obj", testObj)
-                    .withObject("objList", objList)
-                    .withObject("map", map).navigation(this)
+            // 该页面未配置 Route 注解，动态注册到 ARouter
+            R.id.dynamicNavigation -> ARouter.getInstance().build("/dynamic/activity")
+                .withString("name", "老王")
+                .withInt("age", 18)
+                .withBoolean("boy", true)
+                .withLong("high", 180)
+                .withString("url", "https://a.b.c")
+                .withSerializable("ser", testSerializable)
+                .withParcelable("pac", testParcelable)
+                .withObject("obj", testObj)
+                .withObject("objList", objList)
+                .withObject("map", map).navigation(this)
 
             else -> {}
         }
