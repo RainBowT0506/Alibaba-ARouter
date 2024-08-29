@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
+import com.alibaba.android.arouter.BuildConfig
 import com.alibaba.android.arouter.demo.module1.testactivity.TestDynamicActivity
 import com.alibaba.android.arouter.demo.module1.testservice.SingleService
 import com.alibaba.android.arouter.demo.service.HelloService
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 // 发阶段，线上开启调试模式有安全风险，可以使用BuildConfig.DEBUG
                 // 来区分环境
                 ARouter.openDebug()
+                ARouter.printStackTrace();
                 ARouter.init(application)
             }
 
@@ -126,7 +128,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             //  进阶用法(请先初始化)
             R.id.navByUrl -> ARouter.getInstance()
                 .build("/test/webview")
-                .withString("url", "file:///android_asset/scheme-test.html")
+                .withString("url", "file:///android_asset/scheme-test.xml")
                 .navigation()
 
             R.id.interceptor -> ARouter.getInstance()

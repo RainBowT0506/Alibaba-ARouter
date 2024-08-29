@@ -3,3 +3,9 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
 }
+
+buildscript {
+    dependencies {
+        classpath("com.alibaba:arouter-register:1.0.2")
+    }
+}
